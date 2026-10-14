@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FUNMORDES RECORD LEADERBOARD</title>
-<link rel="icon" type="image/jpg" href="./1790452658424_427855192085454370_5721502452398162612_4d5252365be6b5432cd023448cf62ec3.jpg">
+<title>SHK RECORD LEADERBOARD</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#080B12;--bg2:#0E1420;--card:#121B2A;--card-h:#182438;--blue:#38BDF8;--orange:#F97316;--gold:#FACC15;--ok:#22C55E;--err:#EF4444;--tx:#F1F5F9;--tx2:#94A3B8;--bd:rgba(148,163,184,0.14)}
+:root{--bg:#000000;--bg2:#0A0A0A;--card:#111111;--card-h:#1A1A1A;--blue:#38BDF8;--orange:#F97316;--gold:#FACC15;--ok:#22C55E;--err:#EF4444;--tx:#F1F5F9;--tx2:#94A3B8;--bd:rgba(148,163,184,0.14)}
 *{-webkit-tap-highlight-color:transparent}
 body{background:var(--bg);color:var(--tx);font-family:'Be Vietnam Pro',sans-serif}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:14px;transition:.2s}
@@ -72,7 +71,7 @@ a{cursor:pointer}
 .avatar-edit-btn{position:absolute;bottom:0;right:0;width:2rem;height:2rem;border-radius:9999px;background:var(--blue);color:#0a0a0a;display:flex;align-items:center;justify-content:center;cursor:pointer;border:2px solid var(--card);font-size:1rem}
 .feed-post{background:var(--card);border:1px solid var(--bd);border-radius:14px;margin-bottom:1rem;transition:.2s;overflow:hidden}
 .feed-img{width:100%;max-height:520px;object-fit:contain;background:var(--bg2)}
-.profile-banner{position:relative;height:180px;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#0E1420,#121B2A)}
+.profile-banner{position:relative;height:180px;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,#0A0A0A,#111111)}
 @media(min-width:768px){.profile-banner{height:260px}}
 .profile-banner-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .profile-banner-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,11,18,.85),rgba(8,11,18,.15))}
@@ -96,7 +95,7 @@ a{cursor:pointer}
 <script>
 const SUPABASE_URL = 'https://vfmuduzwribgprtvehys.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_VMnDyqCCckqzUzTr8kjfUQ_f4gzrUcT';
-let CLAN_NAME = 'RACING CLAN';
+let CLAN_NAME = 'SHK';
 let CLAN_SLOGAN = 'Nơi lưu giữ mọi kỷ lục của clan.';
 let CLAN_LOGO = null;
 </script>
@@ -419,8 +418,8 @@ function openCreateStickerDialog(){
 async function loadClanSettings(){
   const { data } = await sb.from('clan_settings').select('*').eq('id',true).single();
   if(!data) return;
-  CLAN_NAME = data.clan_name; CLAN_SLOGAN = data.slogan; CLAN_LOGO = data.logo_url;
-  document.title = 'FUNMORDES RECORD LEADERBOARD';
+  CLAN_NAME = data.clan_name; CLAN_SLOGAN = data.slogan; CLAN_LOGO = null;
+  document.title = 'SHK RECORD LEADERBOARD';
   document.documentElement.style.setProperty('--blue', data.color_primary);
   document.documentElement.style.setProperty('--orange', data.color_accent);
 }
@@ -469,7 +468,6 @@ function layout(content){
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
       <div class="flex items-center gap-2 md:gap-3 cursor-pointer min-w-0 flex-1 md:flex-none" onclick="navigate('/')">
-        ${CLAN_LOGO?`<img src="${esc(CLAN_LOGO)}" class="h-10 md:h-16 w-auto rounded object-contain shrink-0">`:'<span class="text-2xl md:text-4xl shrink-0">🏁</span>'}
         <span class="text-lg md:text-3xl font-extrabold whitespace-nowrap truncate" style="color:var(--blue)">${esc(CLAN_NAME)}</span>
       </div>
       <nav class="hidden md:flex items-center justify-center gap-5 text-lg font-bold whitespace-nowrap text-[--tx2] flex-1">
@@ -601,11 +599,9 @@ route('/', async ()=>{
     try{ const { data } = await sb.storage.from('evidence').createSignedUrl(r.evidence_url, 3600); if(data?.signedUrl) evidenceUrls[r.id] = data.signedUrl; }catch(e){}
   }));
   layout(`
-    <section class="rounded-2xl mb-6 md:mb-10 card overflow-hidden relative" style="background:linear-gradient(135deg,#0E1420,#121B2A)">
-      <div class="absolute inset-0 pointer-events-none" style="background-image:url('1790491929692_427855192085454370_5721502452398162612_c7a25cb862b431b86e6871ce32a6489d.jpg');background-size:cover;background-position:right;opacity:0.3;transform:scale(1.05)"></div>
-      <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(135deg, rgba(14,20,32,.85), rgba(18,27,42,.65))"></div>
+    <section class="rounded-2xl mb-6 md:mb-10 card overflow-hidden relative" style="background:#0A0A0A">
       <div class="relative z-10 p-6 md:p-10">
-        <h1 class="text-2xl md:text-5xl font-extrabold mb-2"><span style="color:var(--gold)">Chào Mừng Đến Với.</span> <span style="color:#A855F7">FUNMORDES</span></h1>
+        <h1 class="text-2xl md:text-5xl font-extrabold mb-2"><span style="color:var(--gold)">Chào Mừng Đến Với.</span> <span style="color:#A855F7">SHK</span></h1>
         <p class="text-sm md:text-lg text-[--tx2] mb-5 md:mb-6">${esc(CLAN_SLOGAN)}</p>
         <div class="flex flex-wrap gap-2 md:gap-3">
           <a onclick="navigate('/maps')" class="btn-p text-sm">Khám phá bản đồ</a>
@@ -1305,12 +1301,11 @@ route('/admin/settings', async ()=>{
     <form id="f-settings" class="space-y-4">
       <div><label class="text-sm text-[--tx2]">Tên clan</label><input name="clan_name" value="${esc(cfg.clan_name)}" required class="mt-1"></div>
       <div><label class="text-sm text-[--tx2]">Slogan</label><input name="slogan" value="${esc(cfg.slogan)}" class="mt-1"></div>
-      <div><label class="text-sm text-[--tx2]">Logo</label><br>${cfg.logo_url?`<img src="${esc(cfg.logo_url)}" class="h-16 w-16 rounded object-cover my-2">`:'<p class="text-sm text-[--tx2] my-2">Chưa có logo</p>'}<input type="file" name="logo_file" accept="image/png,image/jpeg,image/webp" class="mt-1"></div>
       <div class="grid grid-cols-2 gap-3"><div><label class="text-sm text-[--tx2]">Màu chính</label><input type="color" name="color_primary" value="${esc(cfg.color_primary)}" class="mt-1 h-10 !p-1"></div><div><label class="text-sm text-[--tx2]">Màu nhấn</label><input type="color" name="color_accent" value="${esc(cfg.color_accent)}" class="mt-1 h-10 !p-1"></div></div>
       <button class="btn-p w-full" type="submit">Lưu cài đặt</button>
     </form>
   </div>`);
-  document.getElementById('f-settings').onsubmit = async (e)=>{ e.preventDefault(); const btn=e.target.querySelector('button'); btn.disabled=true; btn.textContent='Đang lưu...'; try{ const fd=new FormData(e.target); const update={ clan_name:fd.get('clan_name'), slogan:fd.get('slogan'), color_primary:fd.get('color_primary'), color_accent:fd.get('color_accent'), updated_by: currentUser.id }; const logoFile=fd.get('logo_file'); if(logoFile&&logoFile.size){ const { url } = await uploadImage('branding', logoFile, 'logo'); update.logo_url = url; } const { error } = await sb.from('clan_settings').update(update).eq('id',true); if(error) throw error; await loadClanSettings(); toast('Đã lưu.'); navigate('/'); }catch(err){ toast(err.message,'err'); btn.disabled=false; btn.textContent='Lưu cài đặt'; } };
+  document.getElementById('f-settings').onsubmit = async (e)=>{ e.preventDefault(); const btn=e.target.querySelector('button'); btn.disabled=true; btn.textContent='Đang lưu...'; try{ const fd=new FormData(e.target); const update={ clan_name:fd.get('clan_name'), slogan:fd.get('slogan'), color_primary:fd.get('color_primary'), color_accent:fd.get('color_accent'), updated_by: currentUser.id }; update.logo_url = null; const { error } = await sb.from('clan_settings').update(update).eq('id',true); if(error) throw error; await loadClanSettings(); toast('Đã lưu.'); navigate('/'); }catch(err){ toast(err.message,'err'); btn.disabled=false; btn.textContent='Lưu cài đặt'; } };
 });
 
 // ============ ADMIN: MEMBERS ============
